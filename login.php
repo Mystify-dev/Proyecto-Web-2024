@@ -30,18 +30,11 @@ if ($stmt) {
             // Inicio de sesión exitoso
             session_start();
             $_SESSION['id_usuario'] = $id_usuario;
-            $_SESSION['tipo_usuario'] = $tipo_usuario;
+            $_SESSION['rol'] = $tipo_usuario; // Cambiado de 'tipo_usuario' a 'rol'
             $_SESSION['logged_in'] = true;
 
             echo "Inicio de sesión exitoso. Redirigiendo...";
-            // Redirigir según el rol del usuario
-            if ($tipo_usuario === 'Administrador') {
-                header("Location: home.php");
-            } elseif ($tipo_usuario === 'Comprador') {
-                header("Location: home.php");
-            } elseif ($tipo_usuario === 'Vendedor') {
-                header("Location: home.php");
-            }
+            header("Location: home.php");
             exit();
         } else {
             echo "Credenciales incorrectas.";

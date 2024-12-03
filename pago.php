@@ -13,7 +13,7 @@ $contraseña = "tTVtVCPM";
 $base_datos = "bdtienda";
 
 // Crear la conexión
-$conexion = new mysqli($host, $user, $password, $database);
+$conexion = new mysqli($host, $usuario, $contraseña, $base_datos);
 
 // Verificar la conexión
 if ($conexion->connect_error) {
@@ -31,42 +31,18 @@ if (!$isLoggedIn) {
 
 // Obtener los datos del carrito de la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-$id_comprador = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
-
 if (empty($carrito)) {
     echo "<h1>El carrito está vacío</h1>";
     echo "<p><a href='coleccion.php'>Regresar a la colección</a></p>";
     exit;
 }
 
-// Procesar la compra al enviar el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $conexion->prepare("INSERT INTO Compras (id_comprador, id_obra, fecha_compra, monto) VALUES (?, ?, NOW(), ?)");
-
-    $total = 0;
-    foreach ($carrito as $producto) {
-        $id_obra = $producto['id_obra'];
-        $cantidad = $producto['cantidad'];
-        $monto = $producto['precio'] * $cantidad;
-        $total += $monto;
-
-        // Insertar cada producto en la tabla Compras
-        $stmt->bind_param("iid", $id_comprador, $id_obra, $monto);
-        $stmt->execute();
-    }
-
-    // Cerrar la consulta
-    $stmt->close();
-
-    // Limpiar el carrito después de completar la compra
-    unset($_SESSION['carrito']);
-
-    // Mostrar mensaje de éxito
-    echo "<h1>Compra realizada con éxito</h1>";
-    echo "<p>Total pagado: $" . number_format($total, 2) . "</p>";
-    echo "<p><a href='home.php'>Volver al inicio</a></p>";
-    exit;
+// Calcular el total para mostrarlo en el formulario
+$total = 0;
+foreach ($carrito as $producto) {
+    $total += $producto['precio'] * $producto['cantidad'];
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -76,14 +52,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Pago</title>
     <link rel="stylesheet" href="css/pago.css">
+    <script>
+        // Función para formatear el número de tarjeta
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
+            let formattedValue = '';
+
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+
+            input.value = formattedValue;
+        }
+
+        // Función para formatear la fecha de expiración
+        function formatExpiryDate(input) {
+            let value = input.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
+            let formattedValue = '';
+
+            if (value.length > 2) {
+                formattedValue = value.slice(0, 2) + '/' + value.slice(2, 4);
+            } else {
+                formattedValue = value;
+            }
+
+            input.value = formattedValue;
+        }
+
+        // Agregar eventos para formatear la entrada en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('card-number').addEventListener('input', function() {
+                formatCardNumber(this);
+            });
+
+            document.getElementById('expiry-date').addEventListener('input', function() {
+                formatExpiryDate(this);
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <form method="POST" id="payment-form">
+        <form id="payment-form" method="POST" action="procesar_pago.php">
             <h2>Formulario de Pago</h2>
             <div class="form-group">
                 <label for="card-number">Número de Tarjeta</label>
-                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required oninput="formatCardNumber(this)">
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
             </div>
             <div class="form-group">
                 <label for="card-name">Nombre en la Tarjeta</label>
@@ -92,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group">
                     <label for="expiry-date">Fecha de Expiración</label>
-                    <input type="text" id="expiry-date" placeholder="MM/AA" required oninput="formatExpiryDate(this)">
+                    <input type="text" id="expiry-date" placeholder="MM/AA" required>
                 </div>
                 <div class="form-group">
                     <label for="cvv">CVV</label>
@@ -101,29 +118,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label for="amount">Monto a Pagar</label>
-                <!-- Mostrar el total calculado como valor predeterminado en el campo -->
-                <input type="number" id="amount" name="amount" value="<?php echo number_format($total, 2, '.', ''); ?>" step="0.01" readonly>
+                <input type="number" id="amount" name="amount" placeholder="0.00" step="0.01" required readonly value="<?php echo number_format($total, 2, '.', ''); ?>">
             </div>
             <button type="submit">Pagar Ahora</button>
         </form>
-
-        <script>
-            function formatCardNumber(input) {
-                let value = input.value.replace(/\D/g, '');
-                value = value.match(/.{1,4}/g);
-                if (value) {
-                    input.value = value.join(' ');
-                }
-            }
-
-            function formatExpiryDate(input) {
-                let value = input.value.replace(/\D/g, '');
-                if (value.length > 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                }
-                input.value = value;
-            }
-        </script>
     </div>
 </body>
 </html>

@@ -4,7 +4,7 @@ session_start();
 // Variables de sesión
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
 $userId = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
-$userRol = isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : null;
+$userRol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 
 // Conexión a la base de datos
 $host = "140.84.187.91";

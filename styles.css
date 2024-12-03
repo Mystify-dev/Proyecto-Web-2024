@@ -1,36 +1,36 @@
 /* Ajustes globales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('img/Fondo.jpg') no-repeat center center fixed; /* Imagen de fondo */
-    background-size: cover; /* Escala la imagen para cubrir toda el área */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('img/Fondo.jpg') no-repeat center center fixed; /* Imagen de fondo */
+  background-size: cover; /* Escala la imagen para cubrir toda el área */
 }
 
 /* Cabecera */
 .header {
-    background-color: rgba(244, 162, 97, 0.9); 
-    padding: 10px;
+  background-color: rgba(244, 162, 97, 0.9); 
+  padding: 10px;
 }
 
 /* Menú */
 .menu {
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
 }
 
 .menu button {
-    background-color: #264653;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #264653;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .menu .highlighted {
-    background-color: #6c116b;
+  background-color: #6c116b;
 }
 
 /* Contenido principal */
@@ -65,4 +65,36 @@ body {
   transform: translateY(-50%); 
   width: 25px; 
   height: 25px;
+}
+
+/* Estilo de galería de obras */
+.obras-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.obra {
+  width: 250px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+}
+
+.obra-titulo {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.obra-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
 }
