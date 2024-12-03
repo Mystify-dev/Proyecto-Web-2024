@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Obra</title>
+  <link rel="stylesheet" href="css/crear_obra.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Formulario de Obra</h2>
+    <form action="cargar_obra.php" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Ingresa el título de la obra" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" placeholder="Ingresa la descripción de la obra" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" placeholder="Ingresa el precio" required>
+      </div>
+      <div class="form-group">
+        <label for="imagen">Nombre de la imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Guardar</button>
+      </div>
+    </form>
+    <!-- Botón para regresar a coleccion.php -->
+    <div class="form-group">
+      <a href="coleccion.php"><button type="button">Regresar a Colección</button></a>
+    </div>
+  </div>
+</body>
+</html>

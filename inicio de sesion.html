@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <title>Registro de Usuario</title>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-6">Registro de Usuario</h1>
+    <form action="registro_usuario.php" method="POST" class="space-y-4">
+      
+      <!-- Botón de iniciar sesión -->
+      <div class="text-right">
+        <a href="login.html" class="text-blue-500 underline">Iniciar Sesión</a>
+      </div>
+      
+      <!-- Nombre -->
+      <div>
+        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required 
+               class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      
+      <!-- Correo -->
+      <div>
+        <label for="correo" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input type="email" id="correo" name="correo" required 
+               class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      
+      <!-- Contraseña -->
+      <div>
+        <label for="contraseña" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input type="password" id="contraseña" name="contraseña" required 
+               class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      
+      <!-- Tipo de Usuario -->
+      <div>
+        <label for="tipo_usuario" class="block text-sm font-medium text-gray-700">Tipo de Usuario</label>
+        <select id="tipo_usuario" name="tipo_usuario" required 
+                class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
+          <option value="Comprador">Comprador</option>
+          <option value="Vendedor">Vendedor</option>
+        </select>
+      </div>
+
+      <!-- Fecha de Nacimiento -->
+      <div>
+        <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required 
+               class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+
+      <!-- Género -->
+      <div>
+        <label for="genero" class="block text-sm font-medium text-gray-700">Género</label>
+        <select id="genero" name="genero" required 
+                class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <!-- Aceptar Términos -->
+      <div>
+        <label class="flex items-center">
+          <input type="checkbox" name="acepta_terminos" required
+                 class="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500" />
+          <span class="ml-2 text-sm text-gray-700">Acepto los <a href="#" class="text-blue-500 underline">términos y condiciones</a></span>
+        </label>
+      </div>
+      
+      <!-- Botón de registro -->
+      <div>
+        <button type="submit" 
+                class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          Registrar Usuario
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

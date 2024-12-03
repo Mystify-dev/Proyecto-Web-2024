@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+  }
+  
+  header {
+    background-color: #d39e72;
+    padding: 10px 20px;
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .menu button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .menu .highlighted {
+    background-color: #86106b;
+  }
+  
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+  }
+  
+  .contact-container {
+    background-color: #f5de9b;
+    flex: 1;
+    padding: 100px;
+    border-radius: 16px;
+    margin-right: 40px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  form input, form textarea {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .social-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+  
+  .social-container img {
+    width: 50px;
+    margin: 10px;
+  }
+  
+  .social-container img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }

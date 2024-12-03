@@ -1,0 +1,33 @@
+.collection-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Mantiene el tamaño automático de las columnas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px;
+}
+
+.art-card {
+    background-color: #f8f9fa; /* Fondo claro */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 15px;
+    text-align: center; /* Centra el contenido */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    max-width: 250px; /* Ancho máximo para las tarjetas */
+    margin: 0 auto; /* Centra la tarjeta horizontalmente */
+    overflow: hidden; /* Asegura que nada se desborde fuera de la tarjeta */
+}
+
+.art-image {
+    width: 100%; /* La imagen ocupa el 100% del contenedor de la tarjeta */
+    max-width: 33.33vw; /* La imagen no será más ancha que un tercio del ancho de la pantalla */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Recorta la imagen si es necesario para cubrir el contenedor */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+.art-title, .art-price {
+    font-size: 16px; /* Tamaño de fuente */
+    margin: 5px 0; /* Espacio entre los elementos */
+    color: #333; /* Color de texto */
+}
